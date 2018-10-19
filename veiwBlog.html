@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>veiw the blog</title>
+    <style type="text/css">
+        * { margin: 0; padding: 0 }
+        body { font: 14px "微软雅黑", Arial, Helvetica, sans-serif; background: url('亚马逊中国 z.cn，一站放心购全球_files/cloud2.jpg') no-repeat  #075498;background-size: 100% 100%; color: #fff }
+        img { border: 0; display: block }
+        header, article { width: 600px; margin: auto; overflow: hidden;font-size: larger;}
+        .head{ margin-bottom: 40px}
+        #the-all{overflow:hidden;text-overflow:ellipsis;white-space:pre;padding:3%;width: 700px;height: auto;background-color: white;color: black;}
+        input{   margin-top:50px;box-shadow: none;  outline: none;  width: 20%;  height: 50%;  border-radius: 10px;  background-color: white;  color: #9f0f17;  font-weight: bold;  font-size: larger; }
+        #comment{margin-top:50px;width: 600px;height: 100px;background-color: white;color: black;}
+        input:hover{cursor: pointer}
+        #myComment{width: 600px; margin-top: 50px;font-size: larger; }
+    </style>
+</head>
+<body>
+<header id="top" class="head">
+    <label>文章标题：</label>
+    <span id="title" ></span>
+</header>
+<article id="content">
+    <label >文章内容：<br>
+        <div id="the-all"></div>
+    </label>
+    <label id="dis">评论：
+        <!--<div id="comment">comment</div>-->
+        <!--<div id="comment">comment</div>-->
+        <!--<div id="comment">comment</div>-->
+    </label>
+    <p></p>
+    <input type="submit" value="返回主页" id="art-sub">
+    <input type="button" value="评论" id="write-com">
+    <input type="button" value="删除该博客" id="delete-com">
+</article>
+<script type="text/javascript">
+var cle=document.getElementById("content");
+var ti=document.getElementById("title");
+var co=document.getElementById("the-all");
+var re=document.getElementById("art-sub");
+var de=document.getElementById("delete-com");
+var say=document.getElementById("write-com");
+
+function getCookie(c_name)
+{
+    if (document.cookie.length>0)
+    {
+        c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+        {
+            c_start=c_start + c_name.length+1
+            c_end=document.cookie.indexOf(";",c_start)
+            if (c_end==-1) c_end=document.cookie.length
+            return unescape(document.cookie.substring(c_start,c_end))
+        }
+    }
+    return ""
+}
+function lookBlog(){
+
+    var url=location.href;
+    if(url.search('=')==-1){
+
+        ti.innerHTML=getCookie("title");
+        co.innerHTML=getCookie("content");
+    }
+    else{
+        console.log(decodeURI(url))
+        url=decodeURI(url);
+        var theTitle=url.substr(url.indexOf('=')+1);
+        //console.log(theTitle)
+        var str=localStorage.getItem("art");
+        var arr=str?JSON.parse(str):[];
+        if(arr!=[]){
+            for(var i=0;i<arr.length;i++){
+                var title=arr[i].title;
+                var content=arr[i].content;
+                if(theTitle==title){
+                    ti.innerHTML=title;
+                    co.innerHTML=content;
+                }
+            }
+        }
+    }
+    return ti.innerHTML;
+
+}
+
+var deleteBlogTitle=lookBlog();
+
+var disgussTitle=deleteBlogTitle;
+
+re.onclick=function () {
+    window.location.href="blog homepage.html?theUserName="+getCookie("username");
+}
+
+de.onclick=function () {
+    console.log(getCookie("username"))
+    var va=getCookie("username");
+    if(va=="109002"){
+            var str=localStorage.getItem("art");
+        var arr=str?JSON.parse(str):[];
+        if(arr==[])
+            alert("您还没有发布任何博客！")
+        else{
+            for(var i=0;i<arr.length;i++){
+                if(deleteBlogTitle==arr[i].title){
+                    arr.splice(i,1);
+                    localStorage.setItem("art",JSON.stringify(arr));
+                    alert("删除成功！")
+                    //window.location.href="blog homepage.html";
+                    window.location.href="blog homepage.html?theUserName="+getCookie("username");
+                }
+
+            }
+            console.log(arr)
+        }
+    }
+    else{
+        alert("您不是博主，无权删除！")
+    }
+
+}
+
+say.onclick=function () {
+    console.log(getCookie("username"))
+    var len=getCookie("username").length;
+    console.log(len)
+    if(len==0){
+        alert("请登陆后再评论！")
+        window.location.href="blog.html";
+    }
+
+    else{
+        var label = document.createElement("label");
+        var textarea = document.createElement("textarea");
+        var input = document.createElement("input");
+        input.style.textAlign="center";
+        input.setAttribute("type","button");
+        input.setAttribute("id","writeConmment");
+        input.setAttribute("value","发表评论");
+        textarea.setAttribute("id","myComment");
+        textarea.style.cols="80";
+        textarea.style.rows="2";
+        textarea.setAttribute("placeholder","请输入你的看法：");
+        label.appendChild(textarea);
+        label.appendChild(input);
+        cle.appendChild(label);
+        var wrc=document.getElementById("writeConmment");
+        wrc.onclick=function () {
+
+            add(disgussTitle,textarea.value)
+        }
+    }
+
+
+}
+
+function add(disgussTitle,content) {
+    var str=localStorage.getItem("discuss");
+    var arr=str?JSON.parse(str):[];
+    var discuss={
+        "title":disgussTitle,
+        "content":content
+    };
+    arr.push(discuss);
+    localStorage.setItem("discuss",JSON.stringify(arr));
+    alert("发表评论成功！")
+    window.location.reload();
+
+}
+
+function fresh() {
+    var dis=document.getElementById("dis");
+    var str=localStorage.getItem("discuss");
+    var arr=str?JSON.parse(str):[];
+    if(arr!=[]){
+        for(var i=0;i<arr.length;i++){
+            var title=arr[i].title;
+            var content=arr[i].content;
+            if(title==disgussTitle){
+                var div=document.createElement("div");
+                div.setAttribute("id","comment");
+                div.innerHTML=content;
+                dis.appendChild(div);
+            }
+//        <label>评论：
+//        <!--<div id="comment">comment</div>-->
+//                <!--<div id="comment">comment</div>-->
+//                <!--<div id="comment">comment</div>-->
+//                </label>
+
+
+        }
+    }
+}
+
+fresh();
+</script>
+</body>
+</html>

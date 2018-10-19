@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>write your blog</title>
+    <style type="text/css">
+        * { margin: 0; padding: 0 }
+        body { font: 14px "微软雅黑", Arial, Helvetica, sans-serif; background: url('亚马逊中国 z.cn，一站放心购全球_files/cloud2.jpg') no-repeat  #075498;background-size: 100% 100%; color: #fff }
+        img { border: 0; display: block }
+        header, article { width: 600px; margin: auto; overflow: hidden;font-size: larger;}
+        .head{ margin-bottom: 40px}
+        textarea{font-size: larger;padding: 2%;}
+        input{  box-shadow: none;  outline: none;  width: 20%;  height: 50%;  border-radius: 10px;  background-color: white;  color: #9f0f17;  font-weight: bold;  font-size: larger; }
+        input:hover{cursor: pointer}
+        #input-content{width: 650px;}
+    </style>
+</head>
+<body>
+<header id="top" class="head">
+    <label>文章标题：</label>
+    <textarea id="input-title" name="title" cols="80" rows="2" placeholder="请输入标题："></textarea>
+</header>
+<article class="content" id="con">
+    <label >文章内容：<br>
+        <textarea id="input-content" name="the-content" cols="80" rows="50" placeholder="请输入内容："></textarea>
+    </label>
+    <p></p>
+    <input type="submit" value="发布" id="art-sub">
+    <input type="button" value="发布并查看" id="look-sub">
+    <input type="button" value="返回主页" id="return-sub">
+</article>
+<script type="text/javascript">
+    var art=document.getElementById("art-sub");
+    var look=document.getElementById("look-sub");
+    var re=document.getElementById("return-sub");
+    var title=document.getElementById("input-title");
+    var con=document.getElementById("input-content");
+
+    window.onload=onloadFun;
+
+    function onloadFun() {
+        if(getCookie("username")!="109002")
+            window.location.href="blog homepage.html";
+    }
+
+    re.onclick=function () {
+        window.location.href = document.referrer;
+    }
+
+    function setCookie(c_name,value,expiredays)
+    {
+        var exdate=new Date()
+        exdate.setDate(exdate.getDate()+expiredays)
+        document.cookie=c_name+ "=" +escape(value)+
+            ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+    }
+
+    art.onclick=function (){
+        add(title.value,htmlEncode(con.value));
+
+}
+
+    function add(title,content) {
+        var str=localStorage.getItem("art");
+        var arr=str?JSON.parse(str):[];
+        var art={
+            "title":title,
+            "content":content
+        };
+        arr.push(art);
+        localStorage.setItem("art",JSON.stringify(arr));
+        alert("发布成功！")
+        //window.location.href="blog homepage.html";
+        window.location.href = document.referrer;
+
+    }
+
+    look.onclick=function () {
+
+        add(title.value,htmlEncode(con.value));
+        setCookie("title",title.value,10);
+        setCookie("content",htmlEncode(con.value),10);
+        window.location.href="veiwBlog.html";
+
+
+    }
+
+    //转义  元素的innerHTML内容即为转义后的字符
+    function htmlEncode ( str ) {
+        var ele = document.createElement('span');
+        ele.appendChild( document.createTextNode( str ) );
+        return ele.innerHTML;
+    }
+
+    function getCookie(c_name)
+    {
+        if (document.cookie.length>0)
+        {
+            c_start=document.cookie.indexOf(c_name + "=")
+            if (c_start!=-1)
+            {
+                c_start=c_start + c_name.length+1
+                c_end=document.cookie.indexOf(";",c_start)
+                if (c_end==-1) c_end=document.cookie.length
+                return unescape(document.cookie.substring(c_start,c_end))
+            }
+        }
+        return ""
+    }
+
+</script>
+</body>
+</html>

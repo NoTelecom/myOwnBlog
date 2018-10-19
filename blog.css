@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding:0;
+    list-style:none;
+    text-decoration: none;
+}
+.all-page{
+    width: 100%;
+    height:758px;
+    background-image:url('亚马逊中国 z.cn，一站放心购全球_files/cloud.jpg');
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: relative;
+}
+.max-box{
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 40%;
+    height:440px;
+    background-color: black;
+    /*实现背景透明，文字不透明*/
+    background-color:rgba(0,0,0,0.5);
+    border-radius: 10%;
+}
+.title-box{
+    border-bottom: solid 1.5px white;
+    width: 100%;
+    height: 20%;
+
+}
+.title-box h1{
+    text-align: center;
+    padding-top: 5%;
+    color: white;
+    font-family: Arial;
+}
+.content-box{
+    width: 100%;
+    height: 80%;
+}
+.input-box{
+    position: relative;
+    margin-top: 3%;
+    width: 100%;
+    height: 50%;
+}
+.input-box input{
+    opacity: 200%;
+    margin-top: 4%;
+    position: relative;
+    left:50%;
+    transform: translate(-50%);
+    width:70%;
+    height: 25%;
+    border:solid 2px #AAAAAA;
+    background-color: white;
+    font-size: 150%;
+    /*outline-color:invert;*/
+    /*outline: none;*/
+    /*box-shadow: none;*/
+}
+.use-box{
+    position: relative;
+    margin-top: 3%;
+    width: 100%;
+    height: 30%;
+    position: relative;
+}
+.use-box input{
+    margin-left: 5.5%;
+    box-shadow: none;
+    outline: none;
+    width: 20%;
+    height: 50%;
+    border-radius: 10px;
+    background-color: white;
+    color: #9f0f17;
+    font-weight: bold;
+    font-size: larger;
+    position: relative;
+    left:25%;
+    transform: translate(-25%);
+}
+.use-box input:hover{
+    cursor: pointer;
+}
+#register {
+    color: #4f555c;
+}
+.small-box{
+    margin-top:4%;
+    margin-left: 20%;
+    position: relative;
+
+    background-color: #ffce00;
+
+}

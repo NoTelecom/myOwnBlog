@@ -1,0 +1,65 @@
+* { margin: 0; padding: 0 }
+body { font: 14px "微软雅黑", Arial, Helvetica, sans-serif; background: url('亚马逊中国 z.cn，一站放心购全球_files/cloud2.jpg') no-repeat  #075498;background-size: 100% 100%; color: #fff }
+img { border: 0; display: block }
+ul, li { list-style: none; }
+/*默认链接颜色 */
+a:link, a:visited, a:active { text-decoration: none; color: #fff }
+a:hover { text-decoration: none; color: #fff; }
+.clear { clear: both; }
+.blank { height: 8px; overflow: hidden; width: 100%; margin: auto; clear: both }
+.f_l { float: left }
+.f_r { float: right }
+/* header */
+#login{color: #9f0f17;font-weight: bold}
+header, article { width: 1000px; margin: auto; overflow: hidden }
+nav { margin-bottom: 40px }
+nav a { position: relative; display: inline-block; font-size: 18px; margin-right: 30px }
+.topnav{width:1000px;height:100px;background-color: #2a7497;  padding-top: 30px;font-size: larger;border-radius: 10px; }
+.topnav a span:first-child { z-index: 2; display: block;margin-left: 50px; }
+.topnav a span:last-child { margin-left: 50px;z-index: 1; display: block; color: #fff; opacity: 0; -webkit-transition: -webkit-transform 0.3s, opacity 0.3s; -moz-transition: -moz-transform 0.3s, opacity 0.3s; transition: transform 0.3s, opacity 0.3s; -webkit-transform: translateY(-100%); -moz-transform: translateY(-100%); transform: translateY(-100%); text-align: center }
+.topnav a:hover span:last-child, .topnav a:focus span:last-child { opacity: 1; transform: translateY(0%);/*Y轴移动到正下方，需要opacity和transform*/ }
+.en { color: #fff; font-size: 12px; z-index: 1; display: block; }
+.container { overflow: hidden; margin: 20px; box-shadow: #075498 0px 1px 10px; }
+.blog { margin: 30px 20px; overflow: hidden }
+.blog figure { background: #ececec; border: #FFF 10px solid; width: 270px; height: 430px; float: left; margin: 0 8px 0; overflow: hidden }
+.blog figure img { display: block; margin: auto; height: 256px; overflow: hidden; }
+.blog figure p { margin-top:10px;font-size: 14px; text-shadow: #fff 1px 1px 0px; line-height: 26px; text-align: center; font-weight: bold }
+.blog figure p a { color: #226039; }
+.blog figure figcaption { padding: 10px; line-height: 22px; color: #666; }
+.blog figure ul a { position: relative; display: block }
+
+/* cbp_tmtimeline */
+.cbp_tmtimeline { margin: 30px 0 0 0; padding: 0; list-style: none; position: relative; }
+/*:before伪类在时间轴#cbp-timeline的前面创建一条垂直线，那么时间轴各个节点的内容都会基于这垂直线。*/
+.cbp_tmtimeline:before { content: ''; position: absolute; top: 0; bottom: 0; width: 5px; background: #afdcf8; left: 158px; margin-left: -10px; }
+.cbp_tmtimeline > li { position: relative; }
+.cbp_tmtimeline > li .cbp_tmtime { display: block; width: 100px; padding-right: 30px; position: absolute; margin-left: 20px }
+.cbp_tmtimeline > li .cbp_tmtime span { display: block; text-align: right; }
+.cbp_tmtimeline > li .cbp_tmtime span:first-child { font-size: 14px; color: #bdd0db; }
+.cbp_tmtimeline > li .cbp_tmtime span:last-child { font-size: 22px; color: #3594cb; }
+/*其父元素的第二个子元素*/
+.cbp_tmtimeline > li:nth-child(odd) .cbp_tmtime span:last-child { color: #6cbfee; }
+.cbp_tmtimeline > li .cbp_tmlabel { margin: 0 30px 15px 180px; background: #3594cb; color: #fff; padding: 2em; position: relative; border-radius: 5px; height: 150px; }
+.cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel { background: #579dc5; }
+.cbp_tmtimeline > li .cbp_tmlabel h2 { margin-top: 0px; padding: 0 0 10px 0; font-size: 16px; text-shadow: rgba(7, 84, 152, 0.71) 1px 1px 1px; }
+.cbp_tmtimeline > li .cbp_tmlabel:after { right: 100%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute;  border-right-color: #3594cb; border-width: 10px; top: 10px; }
+/*对话框式小三角原理：宽高为零，单独设置border的宽度，然后上右下左，根据需要选择三角形的方向，比如选向上箭头，其他右、下、左设置为透明；*/
+.cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after { border-right-color: #579dc5; }
+/*时间轴上的小圆圈*/
+.cbp_tmtimeline > li .cbp_tmicon { width: 10px; height: 10px; font-family: 'ecoico'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; font-size: 1.4em; line-height: 40px; -webkit-font-smoothing: antialiased; position: absolute; color: #fff; background: #46a4da; border-radius: 50%; box-shadow: 0 0 0 3px #afdcf8; text-align: center; left: 170px; top: 15px; margin: 0 0 0 -25px; }
+.blogpic { width: 200px; height: 120px; overflow: hidden; display: block; float: left; margin-right: 20px; }
+.blogpic img { width: 100%; height: auto; margin: auto; }
+/*a.classname {color: #c7dcce; display: block; margin-top: 30px;position: absolute;*/
+    /*left: 250px;*/
+    /*bottom: 30px;  }*/
+
+a.readmore { background: #075498; color: #fff; padding: 5px 10px; float: right; margin: 0px 0 0 0; border-radius: 5px;position: absolute;
+    right: 10px;
+    bottom: 20px;}
+a.readmore,#login,#droitWr:hover{cursor: pointer;}
+.cbp_tmtimeline li .cbp_tmtime { -webkit-transition: all 1s; }
+.cbp_tmtimeline li:hover .cbp_tmicon { box-shadow: 0 0 0 3px #ececec; }
+.cbp_tmtimeline li:hover .cbp_tmtime { background: #afdcf8; border-radius: 20px 0 0 20px; }
+.cbp_tmtimeline li:hover .cbp_tmtime span { color: #fff; }
+#loading{  margin-left: 20%;  box-shadow: none;  outline: none;  width: 20%;  height: 50%;  border-radius: 10px;  background-color: #075498;  color: white;  font-weight: bold;  font-size: larger;  position: relative;  left:25%;  transform: translate(-25%);}
+#loading :hover{cursor: pointer;}
